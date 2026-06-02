@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "playwright": "^1.58.2"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.58.2",
+    "@cucumber/cucumber": "^9.0.0"
+  },
+  "scripts": {
+    "test": "npx playwright test",
+    "cucumber": "npx cucumber-js",
+    "cucumber:report": "npx cucumber-js --format progress"
+  }
+}

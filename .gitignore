@@ -1,0 +1,41 @@
+# Node.js dependencies
+node_modules/
+
+# Playwright test results
+playwright-report/
+test-results/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Debug and editor files
+.vscode/
+.DS_Store
+
+# Optional npm cache
+.npm
+
+# Temporary files
+tmp/
+*.tmp
+
+# Environment variables
+.env
+
+# Screenshots
+*.png
+*.jpg
+*.jpeg
+
+# Lock files
+package-lock.json
+
+# Cucumber HTML reports and intermediate files
+cucumber-report/
+
+# Misc
+.idea/
