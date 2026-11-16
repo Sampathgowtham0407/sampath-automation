@@ -1,4 +1,4 @@
-const {test, expect} = require('playwright/test');
+import { test, expect } from '@playwright/test';
 test('store variable to use again', async ({browser}) => {
     const Context = await browser.newContext();
     const page = await Context.newPage();

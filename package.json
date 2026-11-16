@@ -3,12 +3,15 @@
     "playwright": "^1.58.2"
   },
   "devDependencies": {
-    "@playwright/test": "^1.58.2",
-    "@cucumber/cucumber": "^9.0.0"
+    "@cucumber/cucumber": "^9.0.0",
+    "@playwright/test": "^1.60.0",
+    "@types/node": "^26.6.6",
+    "ts-node": "^10.9.2",
+    "typescript": "^6.0.3"
   },
   "scripts": {
     "test": "npx playwright test",
-    "cucumber": "npx cucumber-js",
-    "cucumber:report": "npx cucumber-js --format progress"
+    "cucumber": "npx cucumber-js \"features/**/*.feature\" --require-module ts-node/register --require \"features/**/*.ts\" --format progress",
+    "cucumber:report": "npx cucumber-js \"features/**/*.feature\" --require-module ts-node/register --require \"features/**/*.ts\" --format progress"
   }
 }

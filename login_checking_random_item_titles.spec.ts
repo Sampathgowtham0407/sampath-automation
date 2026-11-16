@@ -1,4 +1,4 @@
-const {test, expect} = require('playwright/test');
+import { test, expect } from '@playwright/test';
 test('browser context test', async ({browser}) =>
 {
     const context = await browser.newContext();
@@ -7,12 +7,9 @@ test('browser context test', async ({browser}) =>
     console.log(await page.title());
     await page.locator('#username').fill('rahulshettyacademy');
     await page.locator('#password').fill('Learning@830$3mK2');
-    const dropdown = page.locator('select.form-control');
-    await dropdown.selectOption('teach');
-    await expect(dropdown).toHaveValue('teach');
-
-    // wait 3 seconds after selecting the teacher option before clicking sign in
-    await page.waitForTimeout(3000);
-
     await page.locator('#signInBtn').click();
+     // Wait for next page to load
+    console.log(await page.locator(".card-body a").first().textContent()); 
+    console.log(await page.locator(".card-body a").nth(1).textContent()); // Print title of next page
+     // Close the browser
 });

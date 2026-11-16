@@ -1,4 +1,4 @@
-const { test } = require('@playwright/test');
+import { test } from '@playwright/test';
 
 test('screenshot username label text', async ({ page }) => {
   await page.goto('https://rahulshettyacademy.com/loginpagePractise/');

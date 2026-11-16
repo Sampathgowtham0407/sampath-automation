@@ -1,4 +1,4 @@
-const {test, expect} = require('playwright/test');
+import { test, expect } from '@playwright/test';
 
 test('amazon mobile search and 8GB storage selection', async ({page}) => {
     // Open Amazon India page

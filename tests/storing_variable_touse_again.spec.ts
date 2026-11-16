@@ -1,4 +1,4 @@
-const {test, expect} = require('playwright/test');
+import { test, expect } from '@playwright/test';
 
 test('store variable to use again', async ({page}) => {
     await page.goto('https://rahulshettyacademy.com/loginpagePractise/');
