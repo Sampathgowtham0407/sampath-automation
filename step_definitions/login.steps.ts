@@ -1,6 +1,6 @@
 import { Before, After, Given, Then, When } from '@cucumber/cucumber';
 import { chromium, expect, type Browser, type Page } from '@playwright/test';
-import { LoginPage2 } from '../../pages/loginPage2';
+import { LoginPage2 } from '../pages/loginPage2';
 
 const baseURL = 'https://practice.expandtesting.com/login';
 const username = 'practice';
@@ -21,7 +21,7 @@ Given('the user is on the login page', async function () {
   await page.goto(baseURL, { waitUntil: 'domcontentloaded', timeout: 60000 });
 });
 
-Given('the user logs in with valid credentials', async function () {
+Given('the user logs in with valid credentials with', async function () {
   await loginPage.login(username, password);
 });
 

@@ -1,7 +1,7 @@
 import { After, Before, Given, Then, When } from '@cucumber/cucumber';
 import { chromium, expect, type Browser, type Page } from '@playwright/test';
 import { createInterface } from 'node:readline/promises';
-import { RahulLoginPage } from '../../pages/rahulLoginPage';
+import { RahulLoginPage } from '../pages/rahulLoginPage';
 
 const loginUrl = 'https://rahulshettyacademy.com/loginpagePractise/';
 

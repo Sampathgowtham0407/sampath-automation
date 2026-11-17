@@ -11,7 +11,8 @@
   },
   "scripts": {
     "test": "npx playwright test",
-    "cucumber": "npx cucumber-js \"features/**/*.feature\" --require-module ts-node/register --require \"features/**/*.ts\" --format progress",
-    "cucumber:report": "npx cucumber-js \"features/**/*.feature\" --require-module ts-node/register --require \"features/**/*.ts\" --format progress"
+    "cucumber": "npx cucumber-js \"features/**/*.feature\" --require-module ts-node/register --require \"step_definitions/**/*.ts\" --format progress",
+    "cucumber:rahul": "npx cucumber-js \"features/RahulLogin.feature\" --require-module ts-node/register --require \"step_definitions/rahul-login.steps.ts\" --format progress",
+    "cucumber:report": "npx cucumber-js \"features/**/*.feature\" --require-module ts-node/register --require \"step_definitions/**/*.ts\" --format progress"
   }
 }
