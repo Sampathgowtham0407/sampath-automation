@@ -9,16 +9,18 @@ let browser: Browser;
 let page: Page;
 let loginPage: RahulLoginPage;
 let username: string;
-let password: string;
+let loginPassword: string;
+let formPassword: string;
 
 Before({ timeout: 120000 }, async function () {
   const prompt = createInterface({ input: process.stdin, output: process.stdout });
-  username = await prompt.question('Username: ');
-  password = await prompt.question('Password: ');
+  username = await prompt.question('Login username: ');
+  loginPassword = await prompt.question('Login password: ');
+  formPassword = await prompt.question('Home form password: ');
   prompt.close();
 
-  if (!username.trim() || !password) {
-    throw new Error('Username and password must not be empty.');
+  if (!username.trim() || !loginPassword || !formPassword) {
+    throw new Error('Login username, login password, and home form password must not be empty.');
   }
 
   browser = await chromium.launch({ headless: false });
@@ -39,7 +41,7 @@ Given('the user opens the Rahul Shetty Academy login page', async function () {
 When(
   'the user signs in with credentials entered in the terminal',
   async function () {
-    await loginPage.login(username, password);
+    await loginPage.login(username, loginPassword);
   },
 );
 
@@ -49,4 +51,33 @@ Then('the user should be redirected to the shop page', async function () {
 
 When('the user clicks the Category 1 link', async function () {
   await loginPage.clickCategory1();
+});
+
+When('the user opens the Home form', async function () {
+  await loginPage.openHomeForm();
+});
+
+Then('the user should be on the Home form page', async function () {
+  await expect(page).toHaveURL(/\/angularpractice\/?$/, { timeout: 15000 });
+  await expect(loginPage.nameInput).toBeVisible();
+});
+
+When('the user fills the Home form with the requested details', async function () {
+  await loginPage.fillHomeForm({
+    name: 'sampath',
+    email: 'sam@yopmail.com',
+    password: formPassword,
+    dateOfBirth: '2000-01-30',
+  });
+});
+
+Then('the Home form should show the requested values and selections', async function () {
+  await expect(loginPage.nameInput).toHaveValue('sampath');
+  await expect(loginPage.emailInput).toHaveValue('sam@yopmail.com');
+  await expect(loginPage.formPasswordInput).toHaveValue(formPassword);
+  await expect(loginPage.genderSelect).toHaveValue('Male');
+  await expect(loginPage.iceCreamCheckbox).toBeChecked();
+  await expect(loginPage.employedRadio).toBeChecked();
+  await expect(loginPage.birthDateInput).toHaveValue('2000-01-30');
+  await loginPage.waitAndClosePage();
 });
