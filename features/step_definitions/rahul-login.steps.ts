@@ -79,5 +79,15 @@ Then('the Home form should show the requested values and selections', async func
   await expect(loginPage.iceCreamCheckbox).toBeChecked();
   await expect(loginPage.employedRadio).toBeChecked();
   await expect(loginPage.birthDateInput).toHaveValue('2000-01-30');
+});
+
+When('the user submits the Home form', async function () {
+  await loginPage.submitHomeForm();
+});
+
+Then('the success message should be displayed', async function () {
+  await expect(loginPage.successAlert).toContainText(
+    'Success! The Form has been submitted successfully!',
+  );
   await loginPage.waitAndClosePage();
 });

@@ -13,6 +13,8 @@ export class RahulLoginPage {
   readonly iceCreamCheckbox: Locator;
   readonly employedRadio: Locator;
   readonly birthDateInput: Locator;
+  readonly submitButton: Locator;
+  readonly successAlert: Locator;
 
   constructor(private readonly page: Page) {
     this.usernameInput = page.locator('#username');
@@ -29,6 +31,8 @@ export class RahulLoginPage {
     });
     this.employedRadio = page.getByRole('radio', { name: 'Employed' });
     this.birthDateInput = page.locator('[name="bday"]');
+    this.submitButton = page.getByRole('button', { name: 'Submit' });
+    this.successAlert = page.locator('div.alert.alert-success.alert-dismissible');
   }
 
   async login(username: string, password: string): Promise<void> {
@@ -60,6 +64,10 @@ export class RahulLoginPage {
     await this.iceCreamCheckbox.check();
     await this.employedRadio.check();
     await this.birthDateInput.fill(data.dateOfBirth);
+  }
+
+  async submitHomeForm(): Promise<void> {
+    await this.submitButton.click();
   }
 
   async waitAndClosePage(): Promise<void> {

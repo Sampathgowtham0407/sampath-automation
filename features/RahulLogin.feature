@@ -1,6 +1,6 @@
 Feature: Rahul Shetty Academy login and home form
 
-  Scenario: Log in, open Category 1, and fill the Home form
+  Scenario: Log in, open Category 1, submit the Home form
     Given the user opens the Rahul Shetty Academy login page
     When the user signs in with credentials entered in the terminal
     Then the user should be redirected to the shop page
@@ -9,3 +9,5 @@ Feature: Rahul Shetty Academy login and home form
     Then the user should be on the Home form page
     When the user fills the Home form with the requested details
     Then the Home form should show the requested values and selections
+    When the user submits the Home form
+    Then the success message should be displayed
