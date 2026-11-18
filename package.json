@@ -3,7 +3,7 @@
     "playwright": "^1.58.2"
   },
   "devDependencies": {
-    "@cucumber/cucumber": "^9.0.0",
+    "@cucumber/cucumber": "^13.3.0",
     "@playwright/test": "^1.60.0",
     "@types/node": "^26.6.6",
     "ts-node": "^10.9.2",
@@ -13,6 +13,7 @@
     "test": "npx playwright test",
     "cucumber": "npx cucumber-js \"features/**/*.feature\" --require-module ts-node/register --require \"step_definitions/**/*.ts\" --format progress",
     "cucumber:rahul": "npx cucumber-js \"features/RahulLogin.feature\" --require-module ts-node/register --require \"step_definitions/rahul-login.steps.ts\" --format progress",
+    "cucumber:rahul:new": "npx cucumber-js \"features/rahul_new_test.feature\" --require-module ts-node/register --require \"step_definitions/rahul-login.steps.ts\" --require \"step_definitions/rahul_new_test.steps.ts\" --format progress",
     "cucumber:report": "npx cucumber-js \"features/**/*.feature\" --require-module ts-node/register --require \"step_definitions/**/*.ts\" --format progress"
   }
 }

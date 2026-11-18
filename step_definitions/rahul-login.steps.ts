@@ -10,23 +10,33 @@ let page: Page;
 let loginPage: RahulLoginPage;
 let username: string;
 let loginPassword: string;
-let formPassword: string;
+let formPassword: string | undefined;
 
 Before({ timeout: 120000 }, async function () {
   const prompt = createInterface({ input: process.stdin, output: process.stdout });
-  username = await prompt.question('Login username: ');
-  loginPassword = await prompt.question('Login password: ');
-  formPassword = await prompt.question('Home form password: ');
-  prompt.close();
+  try {
+    username = await prompt.question('Login username: ');
+    loginPassword = await prompt.question('Login password: ');
+  } finally {
+    prompt.close();
+  }
 
-  if (!username.trim() || !loginPassword || !formPassword) {
-    throw new Error('Login username, login password, and home form password must not be empty.');
+  if (!username.trim() || !loginPassword) {
+    throw new Error('Login username and login password must not be empty.');
   }
 
   browser = await chromium.launch({ headless: false });
   page = await browser.newPage();
   loginPage = new RahulLoginPage(page);
 });
+
+export function getRahulPage(): Page {
+  if (!page) {
+    throw new Error('The Rahul Academy page has not been initialized.');
+  }
+
+  return page;
+}
 
 After({ timeout: 30000 }, async function () {
   if (browser) {
@@ -63,6 +73,19 @@ Then('the user should be on the Home form page', async function () {
 });
 
 When('the user fills the Home form with the requested details', async function () {
+  if (!formPassword) {
+    const prompt = createInterface({ input: process.stdin, output: process.stdout });
+    try {
+      formPassword = await prompt.question('Home form password: ');
+    } finally {
+      prompt.close();
+    }
+  }
+
+  if (!formPassword) {
+    throw new Error('Home form password must not be empty.');
+  }
+
   await loginPage.fillHomeForm({
     name: 'sampath',
     email: 'sam@yopmail.com',
