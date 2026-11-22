@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "dotenv": "^18.0.10",
     "playwright": "^1.58.2"
   },
   "devDependencies": {
@@ -14,6 +15,7 @@
     "cucumber": "npx cucumber-js \"features/**/*.feature\" --require-module ts-node/register --require \"step_definitions/**/*.ts\" --format progress",
     "cucumber:rahul": "npx cucumber-js \"features/RahulLogin.feature\" --require-module ts-node/register --require \"step_definitions/rahul-login.steps.ts\" --format progress",
     "cucumber:rahul:new": "npx cucumber-js \"features/rahul_new_test.feature\" --require-module ts-node/register --require \"step_definitions/rahul-login.steps.ts\" --require \"step_definitions/rahul_new_test.steps.ts\" --format progress",
+    "cucumber:amazon:login": "npx cucumber-js \"features/amazon_login.feature\" --require-module ts-node/register --require \"step_definitions/amazon_login.steps.ts\" --require \"step_definitions/amazon_mobiles.steps.ts\" --format progress",
     "cucumber:report": "npx cucumber-js \"features/**/*.feature\" --require-module ts-node/register --require \"step_definitions/**/*.ts\" --format progress"
   }
 }
